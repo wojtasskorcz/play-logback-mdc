@@ -1,0 +1,1 @@
+GET     /thumbnail/:photoId/w/:width    com.eyeem.controllers.ThumbnailController.getThumbnail(photoId: Int, width: Int)
