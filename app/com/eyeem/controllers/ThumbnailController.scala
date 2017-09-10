@@ -1,7 +1,5 @@
 package com.eyeem.controllers
 
-import javax.inject.Inject
-
 import com.eyeem.services.{S3Service, ThumbnailService}
 import com.typesafe.scalalogging.LazyLogging
 import org.slf4j.MDC
@@ -9,11 +7,10 @@ import play.api.mvc.{BaseController, ControllerComponents}
 
 import scala.concurrent.ExecutionContext
 
-class ThumbnailController @Inject() (
-                                      val controllerComponents: ControllerComponents,
-                                      val s3Service: S3Service,
-                                      val thumbnailService: ThumbnailService)
-                                    (implicit ec: ExecutionContext) extends BaseController with LazyLogging {
+class ThumbnailController(val controllerComponents: ControllerComponents,
+                          val s3Service: S3Service,
+                          val thumbnailService: ThumbnailService)
+                         (implicit ec: ExecutionContext) extends BaseController with LazyLogging {
 
   def getThumbnailDummy(photoId: Int, width: Int) = Action {
     MDC.put("width", width.toString)

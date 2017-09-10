@@ -1,6 +1,7 @@
 package com.eyeem
 
 import com.eyeem.controllers.ThumbnailController
+import com.eyeem.filters.LoggingFilter
 import com.eyeem.services.{S3Service, ThumbnailService}
 import play.api.ApplicationLoader.Context
 import play.api.{ApplicationLoader, BuiltInComponentsFromContext, LoggerConfigurator}
@@ -23,4 +24,6 @@ class MyComponents(context: Context) extends BuiltInComponentsFromContext(contex
   lazy val thumbnailService = new ThumbnailService
   lazy val thumbnailController = new ThumbnailController(controllerComponents, s3Service, thumbnailService)
   lazy val router = new Routes(httpErrorHandler, thumbnailController)
+
+  override lazy val httpFilters = Seq(new LoggingFilter)
 }
