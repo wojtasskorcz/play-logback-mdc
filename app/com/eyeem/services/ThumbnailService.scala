@@ -1,12 +1,12 @@
 package com.eyeem.services
 
+import javax.inject.Inject
+
 import com.eyeem.model.Photo
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
-import scala.concurrent.ExecutionContext.Implicits.global
-
-class ThumbnailService {
+class ThumbnailService @Inject() (implicit ec: ExecutionContext) {
 
   def createThumbnail(photo: Photo, width: Int): Future[Photo] = Future {
     Thread.sleep(100) // converting

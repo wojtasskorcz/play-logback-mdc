@@ -1,12 +1,12 @@
 package com.eyeem.services
 
+import javax.inject.Inject
+
 import com.eyeem.model.Photo
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
-import scala.concurrent.ExecutionContext.Implicits.global
-
-class S3Service {
+class S3Service @Inject() (implicit ec: ExecutionContext) {
 
   def retrievePhoto(photoId: Int): Future[Photo] = Future {
     Thread.sleep(1000) // retrieving
